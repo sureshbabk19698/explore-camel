@@ -2,7 +2,6 @@ package com.sk.explorecamel.basic;
 
 import java.time.LocalDateTime;
 
-import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.beans.factory.annotation.Value;
