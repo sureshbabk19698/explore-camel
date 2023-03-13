@@ -13,6 +13,7 @@ public class SecurityRouter extends RouteBuilder {
 	public void configure() throws Exception {
 
 		from(CamelConstants.DIRECT + SecurityRoutes.notices)
+				.process(new RestProcessor())
 				.to(SecurityRoutes.hostAndPort + SecurityRoutes.notices + CamelConstants.BRIDGE_ENDPOINT);
 	}
 }

@@ -1,2 +1,3 @@
-# explore-camel
- Demo project for camel
+**Demo project to explore apache-camel**
+ -----------------------------------------------------------------------------------------------------------
+ 
