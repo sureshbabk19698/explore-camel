@@ -1,4 +1,4 @@
-package com.sk.explorecamel.basic;
+package com.sk.explorecamel.basicrest;
 
 import java.util.List;
 

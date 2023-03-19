@@ -1,4 +1,4 @@
-package com.sk.explorecamel.basic;
+package com.sk.explorecamel.basicrest;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
