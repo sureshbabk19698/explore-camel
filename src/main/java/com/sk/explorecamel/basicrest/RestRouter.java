@@ -19,6 +19,8 @@ public class RestRouter extends RouteBuilder {
 		restConfiguration().component("servlet").host("localhost").port(port).bindingMode(RestBindingMode.json);
 
 		rest(NotifyRoutes.notification)
+			.get(NotifyRoutes.getFeedByContent).to(Constants.DIRECT + NotifyRoutes.getFeedByContent)
+			.get(NotifyRoutes.getFeedByContent_ViaDynamicURI).to(Constants.DIRECT + NotifyRoutes.getFeedByContent_ViaDynamicURI)
 			.post(NotifyRoutes.updateNotification).to(Constants.DIRECT + NotifyRoutes.updateNotification);
 
 	}
