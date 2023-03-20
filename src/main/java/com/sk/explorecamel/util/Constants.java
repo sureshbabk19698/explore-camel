@@ -16,6 +16,7 @@ public interface Constants {
 		String updateNotification = "/updateTodaysFeed";
 		String getFeedByContent_ViaDynamicURI = "/getFeedByContent_ViaDynamicURI";
 		String getFeedByContent = "/getFeedByContent";
+		String getFeedById = "/getFeedById";
 	}
 
 }

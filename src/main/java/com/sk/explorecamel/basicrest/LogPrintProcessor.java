@@ -2,15 +2,17 @@ package com.sk.explorecamel.basicrest;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class RestProcessor implements Processor {
+@Component
+public class LogPrintProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
-		log.info("Inside processor {} ", exchange.getMessage().getBody());
+		log.info("Printing data from processor {}", exchange.getIn().getBody());
 	}
 
 }

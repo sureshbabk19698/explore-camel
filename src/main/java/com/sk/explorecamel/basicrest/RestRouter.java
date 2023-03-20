@@ -21,7 +21,8 @@ public class RestRouter extends RouteBuilder {
 		rest(NotifyRoutes.notification)
 			.get(NotifyRoutes.getFeedByContent).to(Constants.DIRECT + NotifyRoutes.getFeedByContent)
 			.get(NotifyRoutes.getFeedByContent_ViaDynamicURI).to(Constants.DIRECT + NotifyRoutes.getFeedByContent_ViaDynamicURI)
-			.post(NotifyRoutes.updateNotification).to(Constants.DIRECT + NotifyRoutes.updateNotification);
+			.post(NotifyRoutes.updateNotification).to(Constants.DIRECT + NotifyRoutes.updateNotification)
+			.get(NotifyRoutes.getFeedById +"/{id}").to(Constants.DIRECT + NotifyRoutes.getFeedById);
 
 	}
 
