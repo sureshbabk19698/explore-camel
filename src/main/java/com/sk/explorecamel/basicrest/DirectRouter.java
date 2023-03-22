@@ -70,7 +70,7 @@ public class DirectRouter extends RouteBuilder {
 			.unmarshal(new ListJacksonDataFormat(NotifcationModel.class))
 			.process(logPrintProcessor);
 		
-		// GET - via Static Endpoint
+		// GET - PathParam - via Dynamic Endpoint
 		from(Constants.DIRECT + NotifyRoutes.getFeedById)
 			.routeId("Static-->getFeedById")
 			.removeHeaders(Constants.camelHttp)
