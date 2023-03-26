@@ -9,7 +9,7 @@ public interface Constants {
 	String ACCEPT = "Accept";
 	String CONTENT_TYPE = "Content-Type";
 	String camelHttp = "CamelHttp*";
-	
+
 	interface NotifyRoutes {
 		String hostAndPort = "http://localhost:8080";
 		String notification = "/notification";
@@ -19,4 +19,9 @@ public interface Constants {
 		String getFeedById = "/getFeedById";
 	}
 
+	interface UsersRoutes {
+		String hostAndPort = "http://localhost:8080";
+		String user = "/user";
+		String findByGender = "/findByGender/{gender}";
+	}
 }

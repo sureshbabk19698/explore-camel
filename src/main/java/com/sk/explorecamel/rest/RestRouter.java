@@ -1,4 +1,4 @@
-package com.sk.explorecamel.basicrest;
+package com.sk.explorecamel.rest;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.sk.explorecamel.util.Constants;
 import com.sk.explorecamel.util.Constants.NotifyRoutes;
+import com.sk.explorecamel.util.Constants.UsersRoutes;
 
 @Component
 public class RestRouter extends RouteBuilder {
@@ -24,6 +25,8 @@ public class RestRouter extends RouteBuilder {
 			.post(NotifyRoutes.updateNotification).to(Constants.DIRECT + NotifyRoutes.updateNotification)
 			.get(NotifyRoutes.getFeedById +"/{id}").to(Constants.DIRECT + NotifyRoutes.getFeedById);
 
+		rest(UsersRoutes.user) 
+			.get(UsersRoutes.findByGender).to(Constants.DIRECT + UsersRoutes.findByGender);
 	}
 
 }

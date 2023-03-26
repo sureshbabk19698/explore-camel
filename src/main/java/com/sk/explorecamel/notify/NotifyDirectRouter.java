@@ -1,4 +1,4 @@
-package com.sk.explorecamel.basicrest;
+package com.sk.explorecamel.notify;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
@@ -8,12 +8,13 @@ import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sk.explorecamel.common.processor.LogPrintProcessor;
 import com.sk.explorecamel.model.NotifcationModel;
 import com.sk.explorecamel.util.Constants;
 import com.sk.explorecamel.util.Constants.NotifyRoutes;
 
 @Component
-public class DirectRouter extends RouteBuilder {
+public class NotifyDirectRouter extends RouteBuilder {
 
 	private String getFeedByContentDynamicUrl = NotifyRoutes.hostAndPort + NotifyRoutes.notification
 			+ NotifyRoutes.getFeedByContent + "?keyword=${header.keyword}" + Constants.AND_BRIDGE_ENDPOINT;
