@@ -14,8 +14,8 @@ import com.sk.explorecamel.util.Constants.UsersRoutes;
 @Component
 public class UsersDirectRoute extends RouteBuilder {
 
-	private String findByGenderUrl = UsersRoutes.hostAndPort + UsersRoutes.user + UsersRoutes.findByGender
-			+ Constants.QUES_BRIDGE_ENDPOINT;
+	private String findByGenderUrl = UsersRoutes.hostAndPort + UsersRoutes.user + UsersRoutes.findByGender 
+			+ "/${header.gender}" + Constants.QUES_BRIDGE_ENDPOINT;
 
 	@Autowired
 	private LogPrintProcessor logPrintProcessor;
@@ -28,9 +28,8 @@ public class UsersDirectRoute extends RouteBuilder {
 				.removeHeader(Constants.camelHttp)
 				.setHeader(Exchange.HTTP_METHOD, constant("GET"))
 				.setHeader(Constants.ACCEPT, constant(Constants.APP_JSON))
-				.process(exchange -> 
-				exchange.getIn().setHeader("gender" , exchange.getIn().getHeader("gender", String.class))
-					)
+				.process(exchange -> exchange.getIn().setHeader("gender",
+						exchange.getIn().getHeader("gender", String.class)))
 				.log("Find by gender : ${header.gender}")
 				.toD(findByGenderUrl)
 				.unmarshal(new ListJacksonDataFormat(UserModel.class))

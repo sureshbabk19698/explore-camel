@@ -22,6 +22,6 @@ public interface Constants {
 	interface UsersRoutes {
 		String hostAndPort = "http://localhost:8080";
 		String user = "/user";
-		String findByGender = "/findByGender/{gender}";
+		String findByGender = "/findByGender";
 	}
 }

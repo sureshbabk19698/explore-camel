@@ -26,7 +26,7 @@ public class RestRouter extends RouteBuilder {
 			.get(NotifyRoutes.getFeedById +"/{id}").to(Constants.DIRECT + NotifyRoutes.getFeedById);
 
 		rest(UsersRoutes.user) 
-			.get(UsersRoutes.findByGender).to(Constants.DIRECT + UsersRoutes.findByGender);
+			.get(UsersRoutes.findByGender + "/{gender}").to(Constants.DIRECT + UsersRoutes.findByGender);
 	}
 
 }
