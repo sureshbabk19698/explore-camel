@@ -33,7 +33,12 @@ public class UsersDirectRoute extends RouteBuilder {
 				.log("Find by gender : ${header.gender}")
 				.toD(findByGenderUrl)
 				.unmarshal(new ListJacksonDataFormat(UserModel.class))
-				.process(logPrintProcessor);
+				.split(body(), new SplitAggregatorStrategry())
+				.streaming()
+					.parallelProcessing()
+					.log("${body}")
+				.end()
+				.bean(logPrintProcessor);
 
 	}
 
