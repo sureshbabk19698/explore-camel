@@ -7,7 +7,7 @@ public enum Gender {
 
 	Male("M"), Female("F"), Agender("A");
 
-	private String genderCode;
+	private final String genderCode;
 
 	private Gender(String genderCode) {
 		this.genderCode = genderCode;

@@ -11,22 +11,21 @@ import com.sk.explorecamel.model.UserModel;
 import com.sk.explorecamel.util.Constants;
 
 @Component
-public class SplitAggregatorStrategry implements AggregationStrategy {
+public class SplitAggregatorStrategy implements AggregationStrategy {
 
 	@Override
 	public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
+		UserModel newModel = newExchange.getIn().getBody(UserModel.class);
 		if (oldExchange == null) {
-			UserModel oldModel = newExchange.getIn().getBody(UserModel.class);
 			List<UserModel> models = new ArrayList<>();
-			models.add(oldModel);
-			newExchange.setProperty(Constants.allDatas, models);
+			models.add(newModel);
+			newExchange.setProperty(Constants.allData, models);
 			return newExchange;
 		}
 
-		UserModel newModel = newExchange.getIn().getBody(UserModel.class);
-		List<UserModel> allDatas = (List<UserModel>) oldExchange.getProperty(Constants.allDatas);
-		allDatas.add(newModel);
-		oldExchange.setProperty(Constants.allDatas, allDatas);
+		List<UserModel> allData = (List<UserModel>) oldExchange.getProperty(Constants.allData);
+		allData.add(newModel);
+		oldExchange.setProperty(Constants.allData, allData);
 		return oldExchange;
 	}
 

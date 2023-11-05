@@ -14,7 +14,8 @@ import com.sk.explorecamel.util.Constants.UsersRoutes;
 @Component
 public class UsersDirectRoute extends RouteBuilder {
 
-	private String findByGenderUrl = UsersRoutes.hostAndPort + UsersRoutes.user + UsersRoutes.findByGender 
+	private final String basePath = UsersRoutes.hostAndPort + UsersRoutes.user;
+	private String findByGenderUrl = basePath + UsersRoutes.findByGender
 			+ "/${header.gender}" + Constants.QUES_BRIDGE_ENDPOINT;
 
 	@Autowired
@@ -33,7 +34,7 @@ public class UsersDirectRoute extends RouteBuilder {
 				.log("Find by gender : ${header.gender}")
 				.toD(findByGenderUrl)
 				.unmarshal(new ListJacksonDataFormat(UserModel.class))
-				.split(body(), new SplitAggregatorStrategry())
+				.split(body(), new SplitAggregatorStrategy())
 				.streaming()
 					.parallelProcessing()
 					.log("${body}")

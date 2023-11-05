@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class NotifcationModel {
+public class NotificationModel {
 
 	private Long feedId;
 	private String headline;

@@ -15,10 +15,13 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class LogPrintProcessor implements Processor {
 
-	@Override
-	public void process(Exchange exchange) throws Exception {
-		List<UserModel> allDatas = (List<UserModel>) exchange.getProperty(Constants.allDatas);
-		log.info(Thread.currentThread().getName() + " Total records {}", allDatas.size());
-	}
+    @Override
+    public void process(Exchange exchange) {
+        Object data = exchange.getProperty(Constants.allData);
+        if (data != null) {
+            List<UserModel> allData = (List<UserModel>) data;
+            log.info(Thread.currentThread().getName() + " Total records {}", allData.size());
+        }
+    }
 
 }

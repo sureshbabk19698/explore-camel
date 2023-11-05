@@ -9,7 +9,7 @@ public interface Constants {
 	String ACCEPT = "Accept";
 	String CONTENT_TYPE = "Content-Type";
 	String camelHttp = "CamelHttp*";
-	String allDatas = "allDatas";
+	String allData = "allData";
 
 	interface NotifyRoutes {
 		String hostAndPort = "http://localhost:8080";

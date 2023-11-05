@@ -10,7 +10,7 @@ import com.sk.explorecamel.util.Constants.NotifyRoutes;
 import com.sk.explorecamel.util.Constants.UsersRoutes;
 
 @Component
-public class RestRouter extends RouteBuilder {
+public class ApiRoute extends RouteBuilder {
 
 	@Value("${server.port}")
 	private int port;
