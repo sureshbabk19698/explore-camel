@@ -25,4 +25,11 @@ public interface Constants {
 		String user = "/user";
 		String findByGender = "/findByGender";
 	}
+
+	interface TestRoutes {
+		String hostAndPort = "http://localhost:8080";
+		String test = "/test";
+		String testAggregationStrategy = "/testAggregationStrategy";
+
+	}
 }
