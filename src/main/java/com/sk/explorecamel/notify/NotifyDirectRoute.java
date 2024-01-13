@@ -1,5 +1,8 @@
 package com.sk.explorecamel.notify;
 
+import com.sk.explorecamel.common.processor.LogPrintProcessor;
+import com.sk.explorecamel.model.NotificationModel;
+import com.sk.explorecamel.util.Constants;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
@@ -8,23 +11,8 @@ import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sk.explorecamel.common.processor.LogPrintProcessor;
-import com.sk.explorecamel.model.NotificationModel;
-import com.sk.explorecamel.util.Constants;
-import com.sk.explorecamel.util.Constants.NotifyRoutes;
-
 @Component
-public class NotifyDirectRoute extends RouteBuilder {
-
-    private final String basePath = NotifyRoutes.hostAndPort + NotifyRoutes.notification;
-    private String getFeedByContentDynamicUrl = basePath
-            + NotifyRoutes.getFeedByContent + "?keyword=${header.keyword}" + Constants.AND_BRIDGE_ENDPOINT;
-    private String getFeedByContentUrl = basePath
-            + NotifyRoutes.getFeedByContent + Constants.QUES_BRIDGE_ENDPOINT;
-    private String updateNotification = basePath
-            + NotifyRoutes.updateNotification + Constants.QUES_BRIDGE_ENDPOINT;
-    private String getFeedByIdUrl = basePath
-            + NotifyRoutes.getFeedById + "/${header.id}" + Constants.QUES_BRIDGE_ENDPOINT;
+public class NotifyDirectRoute extends RouteBuilder implements  Constants, Constants.NotifyRoutes {
 
     @Autowired
     private LogPrintProcessor logPrintProcessor;
@@ -32,7 +20,12 @@ public class NotifyDirectRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        // POST - send and receive data in JSON
+        String updateNotification = NotifyRoutes.updateNotification + Constants.QUES_BRIDGE_ENDPOINT;
+        String getFeedByContentDynamicUrl = NotifyRoutes.getFeedByContent + "?keyword=${header.keyword}" + Constants.AND_BRIDGE_ENDPOINT;
+        String getFeedByContentUrl = basePath
+                + NotifyRoutes.getFeedByContent + Constants.QUES_BRIDGE_ENDPOINT;
+        String getFeedByIdUrl = NotifyRoutes.getFeedById + "/${header.id}" + Constants.QUES_BRIDGE_ENDPOINT;
+
         from(Constants.DIRECT + NotifyRoutes.updateNotification)
                 .routeId(NotifyRoutes.updateNotification)
                 .removeHeaders(Constants.camelHttp)

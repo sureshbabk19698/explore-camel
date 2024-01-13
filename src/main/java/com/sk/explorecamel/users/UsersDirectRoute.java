@@ -9,20 +9,18 @@ import org.springframework.stereotype.Component;
 import com.sk.explorecamel.common.processor.LogPrintProcessor;
 import com.sk.explorecamel.model.UserModel;
 import com.sk.explorecamel.util.Constants;
-import com.sk.explorecamel.util.Constants.UsersRoutes;
 
 @Component
-public class UsersDirectRoute extends RouteBuilder {
-
-	private final String basePath = UsersRoutes.hostAndPort + UsersRoutes.user;
-	private String findByGenderUrl = basePath + UsersRoutes.findByGender
-			+ "/${header.gender}" + Constants.QUES_BRIDGE_ENDPOINT;
+public class UsersDirectRoute extends RouteBuilder implements Constants, Constants.UsersRoutes {
 
 	@Autowired
 	private LogPrintProcessor logPrintProcessor;
 
 	@Override
 	public void configure() throws Exception {
+
+		String findByGenderUrl = basePath + UsersRoutes.findByGender
+				+ "/${header.gender}" + Constants.QUES_BRIDGE_ENDPOINT;
 
 		from(Constants.DIRECT + UsersRoutes.findByGender)
 				.routeId(UsersRoutes.findByGender)
