@@ -14,7 +14,7 @@ public class ExploreCamelApplication extends SpringBootServletInitializer {
 		return application.sources(ExploreCamelApplication.class);
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		SpringApplication.run(ExploreCamelApplication.class, args);
 	}
 
