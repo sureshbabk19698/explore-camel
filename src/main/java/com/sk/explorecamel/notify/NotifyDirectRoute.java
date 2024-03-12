@@ -4,6 +4,7 @@ import com.sk.explorecamel.common.processor.LogPrintProcessor;
 import com.sk.explorecamel.model.NotificationModel;
 import com.sk.explorecamel.util.Constants;
 import org.apache.camel.Exchange;
+import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.component.jackson.ListJacksonDataFormat;
@@ -26,8 +27,13 @@ public class NotifyDirectRoute extends RouteBuilder implements  Constants, Const
                 + NotifyRoutes.getFeedByContent + Constants.QUES_BRIDGE_ENDPOINT;
         String getFeedByIdUrl = NotifyRoutes.getFeedById + "/${header.id}" + Constants.QUES_BRIDGE_ENDPOINT;
 
+        Predicate check = simple("${header.isOkay} in 'YES' ");
+
         from(Constants.DIRECT + NotifyRoutes.updateNotification)
                 .routeId(NotifyRoutes.updateNotification)
+                .choice()
+                .when(check)
+                .end()
                 .removeHeaders(Constants.camelHttp)
                 .setHeader(Constants.ACCEPT, constant(Constants.APP_JSON))
                 .setHeader(Constants.CONTENT_TYPE, constant(Constants.APP_JSON))
